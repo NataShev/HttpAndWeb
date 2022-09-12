@@ -33,7 +33,7 @@ public class RunServer implements Runnable {
 
             if (parts.length != 3) {
                 // just close socket
-                socket.close();
+                socket.isClosed();
             }
 
             final var path = parts[1];
@@ -45,7 +45,7 @@ public class RunServer implements Runnable {
                                 "\r\n"
                 ).getBytes());
                 out.flush();
-                socket.close();
+                socket.isClosed();
             }
 
             final var filePath = Path.of(".", "public", path);
@@ -67,7 +67,7 @@ public class RunServer implements Runnable {
                 ).getBytes());
                 out.write(content);
                 out.flush();
-                socket.close();
+                socket.isClosed();
             }
 
             final var length = Files.size(filePath);
